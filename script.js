@@ -567,8 +567,8 @@ function draw() {
     else if (lost) {
         background(255, 0, 0);
         textSize(100)
-        text('You lost!', 400, 400)
-        text('Press Enter to retry.');
+        text('You lost!', 400, 300)
+        text('Press Enter to retry.', 400, 500);
 
     }
     else if (won) {
