@@ -108,7 +108,7 @@ function initialize_level(level) {
 }
 
 
-function list_len(length) {
+function range(length) {
     to_return = []
     for (var i = 0; i < length; i ++) {
         to_return.push(1)
@@ -117,14 +117,14 @@ function list_len(length) {
 }
 
 
-l = list_len(1)
-ll = list_len(2)
-lll = list_len(3)
-llll = list_len(4)
-lllll = list_len(5)
-llllll = list_len(6)
-lllllll = list_len(7)
-llllllll = list_len(8)
+l = range(1)
+ll = range(2)
+lll = range(3)
+llll = range(4)
+lllll = range(5)
+llllll = range(6)
+lllllll = range(7)
+llllllll = range(8)
 
 function setup() {
     screen = createCanvas(800, 800)
@@ -167,13 +167,15 @@ function shoot(type, damage, speed, direction_addend=0) {
 
 
 function prepare_spell(incantation) {
-    cost = mana_cost(incantation);
-    player.mana -= cost;
-    if (player.mana >= 0) {
-        spell_stack = mana_cost(incantation);
-    }
-    else {
-        player.mana += cost;
+    if (started_level) {
+        cost = mana_cost(incantation);
+        player.mana -= cost;
+        if (player.mana >= 0) {
+            spell_stack = mana_cost(incantation);
+        }
+        else {
+            player.mana += cost;
+        }
     }
     
 }
@@ -191,7 +193,7 @@ function modified_incantation(incantation) {
 
 function translate_for_cost_purposes(incantation) {
     originals = ['||', '🝭', '🜂', '∫', '≈', 'Ω', 'ω', 'Σ', 'π', 'μ', '≠', '≡', '%', '/', '\\', '|', '🝓', '🝦', '⧱', '⧰', 'ϣ', 'ϩ', 'ϥ', 'ϫ', 'ϭ', '☾', '☽', '⊢', '⊣', '⊤', '⊥']
-    meanings = [';', 'energy_cost_of_a_fireball', '"fire"', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', ',', 'for ', ' in ', 'list_len', 'l', 'w', 's', 'h', 'x', 'g', '{', '}', '+', '-', '*', '/']
+    meanings = [';', 'energy_cost_of_a_fireball', '"fire"', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', ',', 'for ', ' in ', 'range', 'l', 'w', 's', 'h', 'x', 'g', '{', '}', '+', '-', '*', '/']
     for (i in originals) {
         incantation = incantation.split(originals[i]).join(meanings[i])
     }
@@ -218,7 +220,7 @@ function mana_cost(incantation) {
 
 function translate_component(component) {
     originals = ['||', '🝭', '🜂', '∫', '≈', 'Ω', 'ω', 'Σ', 'π', 'μ', '≠', '≡', '%', '/', '\\', '|', '🝓', '🝦', '⧱', '⧰', 'ϣ', 'ϩ', 'ϥ', 'ϫ', 'ϭ', '☾', '☽', '⊢', '⊣', '⊤', '⊥']
-    meanings = [';', 'shoot', '"fire"', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', ',', 'for ', ' in ', 'list_len', 'l', 'w', 's', 'h', 'x', 'g', '{', '}', '+', '-', '*', '/']
+    meanings = [';', 'shoot', '"fire"', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', ',', 'for ', ' in ', 'range', 'l', 'w', 's', 'h', 'x', 'g', '{', '}', '+', '-', '*', '/']
     if (originals.includes(component)) {
         return meanings[originals.indexOf(component)]
     }
@@ -234,7 +236,7 @@ function credits() {
 
 function translate_incantation(incantation) {
     originals = ['||', '🝭', '🜂', '∫', '≈', 'Ω', 'ω', 'Σ', 'π', 'μ', '≠', '≡', '%', '/', '\\', '|', '🝓', '🝦', '⧱', '⧰', 'ϣ', 'ϩ', 'ϥ', 'ϫ', 'ϭ', '☾', '☽', '⊢', '⊣', '⊤', '⊥']
-    meanings = [';', 'shoot', '"fire"', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', ',', 'for ', ' in ', 'list_len', 'l', 'w', 's', 'h', 'x', 'g', '{', '}', '+', '-', '*', '/']
+    meanings = [';', 'shoot', '"fire"', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', ',', 'for ', ' in ', 'range', 'l', 'w', 's', 'h', 'x', 'g', '{', '}', '+', '-', '*', '/']
     for (i in originals) {
         incantation = incantation.split(originals[i]).join(meanings[i])
     }
