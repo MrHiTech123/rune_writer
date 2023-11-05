@@ -92,6 +92,7 @@ function initialize_level(level) {
         return;
     }
 
+    spell_stack = -1
     player.x = 400;
     player.y = 400;
     // player.health = player.max_health;
